@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Button, Image, CheckBox, PreLoader } from "@/shared/index";
 import { checkboxData, request } from "@/shared/config/constants";
 import ErrorImage from "../../assets/images/error.svg";
@@ -34,7 +34,6 @@ const CatCard = () => {
       if (!response.ok) {
         throw new Error("...");
       }
-
       const result = await response.json();
       setCat(result[0]);
     } catch (error: any) {
@@ -43,6 +42,26 @@ const CatCard = () => {
       setLoading(false);
     }
   };
+
+  const startInterval = useCallback(() => {
+    if (autoRefresh) {
+      return setInterval(() => {
+        getCat();
+      }, 5000);
+    } else {
+      return null;
+    }
+  }, [autoRefresh, getCat]);
+
+  useEffect(() => {
+    const intervalID = startInterval();
+
+    return () => {
+      if (intervalID) {
+        clearInterval(intervalID);
+      }
+    };
+  }, [startInterval]);
 
   const handleCheckbox = (e: any) => {
     if (e.target.id === "enabled") {
