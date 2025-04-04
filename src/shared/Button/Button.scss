@@ -4,11 +4,17 @@
   border-radius: $radius-xxs;
   color: $white;
   background-color: $purple;
+  opacity: 1;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, opacity 0.4;
 
   &:hover {
     background-color: $purple-100;
+  }
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: default;
   }
 }

@@ -4,12 +4,17 @@ import "./Button.scss";
 
 interface IButton {
   text: string;
+  disabled: boolean;
   handleClick: () => void;
 }
 
-const Button: FC<IButton> = ({ text, handleClick }) => {
+const Button: FC<IButton> = ({ text, handleClick, disabled }) => {
   return (
-    <button className="button" onClick={handleClick}>
+    <button
+      className="button"
+      onClick={handleClick}
+      disabled={disabled ? true : false}
+    >
       {text}
     </button>
   );

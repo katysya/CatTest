@@ -16,6 +16,8 @@ const CatCard = () => {
   const [cat, setCat] = useState<ICat | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [enabled, setEnabled] = useState(true);
+  const [autoRefresh, setAutoRefresh] = useState(false);
 
   useEffect(() => {
     getCat();
@@ -42,16 +44,28 @@ const CatCard = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(cat);
-  }, [cat]);
+  const handleCheckbox = (e: any) => {
+    if (e.target.id === "enabled") {
+      setEnabled(true);
+      setAutoRefresh(false);
+    } else {
+      setEnabled(false);
+      setAutoRefresh(true);
+    }
+  };
 
   return (
     <div className="cat-card">
       {checkboxData.map((item, index) => (
-        <CheckBox key={index} name={item.name} text={item.text} />
+        <CheckBox
+          key={index}
+          name={item.name}
+          text={item.text}
+          check={index === 0 ? enabled : autoRefresh}
+          change={handleCheckbox}
+        />
       ))}
-      <Button text="Get Cat" handleClick={getCat} />
+      <Button text="Get Cat" disabled={!enabled} handleClick={getCat} />
       <div className="cat-card__img">
         {loading && <PreLoader />}
         {cat && <Image src={cat.url} />}
