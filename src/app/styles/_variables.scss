@@ -1,6 +1,9 @@
+/*Colors*/
 $white: #fffafa;
-
-$black-100: #1c1c1c;
+$black: #1c1c1c;
+$gray: #e8e8e8;
+$purple: #7c06f1;
+$purple-100: #6303c4;
 
 /*Radius*/
 $radius-xxxs: 6px;
@@ -9,6 +12,9 @@ $radius-xs: 16px;
 $radius-s: 24px;
 $radius-m: 30px;
 $radius-l: 40px;
+
+/*Shadow*/
+$shadow: 2px 2px 20px rgba(0, 0, 0, 0.062);
 
 /*Size*/
 $size: calc(100vw - 375px) / 1545;

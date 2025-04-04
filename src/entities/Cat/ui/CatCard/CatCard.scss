@@ -1,0 +1,9 @@
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  border-radius: $radius-s;
+  background-color: $white;
+  box-shadow: $shadow;
+}
