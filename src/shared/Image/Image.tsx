@@ -1,9 +1,14 @@
+import { FC } from "react";
 import "./Image.scss";
 
-const Image = () => {
+interface IImage {
+  src: string;
+}
+
+const Image: FC<IImage> = ({ src }) => {
   return (
-    <div className="test">
-      <img src="." alt="" />
+    <div className="image">
+      <img className="image__content" src={src} alt="" />
     </div>
   );
 };
